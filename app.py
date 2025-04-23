@@ -989,7 +989,8 @@ elif page == "Doctor Finder":
 
                 st.markdown(f"""
                 <div style="
-                    background-color: #f8f9fa;
+                    background-color: #000000;
+                    color: white;
                     border-radius: 10px;
                     padding: 15px;
                     margin-bottom: 10px;
