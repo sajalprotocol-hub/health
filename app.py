@@ -987,19 +987,28 @@ elif page == "Doctor Finder":
                 color = '#4CAF50' if doctor['rating'] >= 4.5 else '#FFC107' if doctor['rating'] >= 3.5 else '#F44336'
                 available_badge = ' • <span style="color: green;">Available Today</span>' if doctor.get('available_today') else ''
 
-                st.markdown(
-                    f'<div style="background-color: #f8f9fa; border-radius: 10px; padding: 15px; margin-bottom: 15px; border-left: 5px solid {color};">'
-                    f'<h3>{doctor["name"]}</h3>'
-                    f'<p style="margin-bottom: 8px;"><strong>{specialty}</strong> • {doctor.get("experience", "N/A")} years experience • '
-                    f'{"⭐" * int(doctor["rating"])} {doctor["rating"]}/5{available_badge}</p>'
-                    f'<p style="margin-bottom: 0px;"><strong>Hospital:</strong> {doctor.get("hospital", "N/A")}</p>'
-                    f'<p style="margin-bottom: 0px;"><strong>Languages:</strong> {", ".join(doctor.get("languages", ["English"]))}</p>'
-                    f'<p style="margin-bottom: 0px;"><strong>Education:</strong> {doctor.get("education", "N/A")}</p>'
-                    f'<p style="margin-bottom: 0px;"><strong>Contact:</strong> {doctor.get("phone", "N/A")}</p>'
-                    f'<p style="margin-bottom: 0px;"><strong>Email:</strong> {doctor.get("email", "N/A")}</p>'
-                    '</div>',
-                    unsafe_allow_html=True
-                )
+                st.markdown(f"""
+                <div style="
+                    background-color: #f8f9fa;
+                    border-radius: 10px;
+                    padding: 15px;
+                    margin-bottom: 10px;
+                    border-left: 5px solid {color};
+                ">
+                    <h4 style="margin-top: 0;">{doctor['name']}</h4>
+                    <p style="margin-bottom: 8px;">
+                        <span style="font-weight: bold;">Hospital:</span> {doctor['hospital']} | 
+                        <span style="font-weight: bold;">Experience:</span> {doctor.get('experience', 'N/A')} years | 
+                        <span style="font-weight: bold;">Rating:</span> {doctor.get('rating', 4.0)}/5
+                    </p>
+                    <p style="margin-bottom: 8px;">
+                        <span style="font-weight: bold;">Languages:</span> {', '.join(doctor.get('languages', ['English']))}
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        <span style="font-weight: bold;">Speciality:</span> {doctor.get('specialty', specialty)}
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
 
                 # Create columns for buttons
                 btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
